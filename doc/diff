@@ -1,0 +1,12 @@
+   Differences to Standard PicoLisp
+   =================================
+
+Features
+   No bignums (only 30- or 62-bit integers)
+   No external symbols / database
+   No unicode support (only ASCII subset)
+   No binary I/O, family IPC, and networking
+   No console line editing
+
+Semantics
+   'heap' and 'gc' in kB instead of MB

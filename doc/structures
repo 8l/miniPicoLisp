@@ -1,0 +1,94 @@
+
+      Primary data types:
+         num      xxxxxx10
+         sym      xxxxx100
+         pair     xxxxx000
+
+      Raw data:
+         bin      xxxxxxxx
+         txt      xxxxxxx1
+
+
+      num
+
+         (30 bit)  -536,870,912  ..  +536,870,911
+
+         (62 bit)  -2,305,843,009,213,693,952  ..  +2,305,843,009,213,693,951
+                                                    |   |   |   |   |   |
+                                                    |   |   |   |   |   Kilo
+                                                    |   |   |   |   Mega
+                                                    |   |   |   Giga
+                                                    |   |   Tera
+                                                    |   Peta
+                                                    Exa
+
+
+      pair
+      |
+      V
+      +-----+-----+
+      | car | cdr |
+      +-----+-----+
+
+
+            sym                                          sym
+            |                                            |
+            V                                            V
+      +-----+-----+                                +-----+-----+
+      |  |  | val |                                | txt | val |
+      +--+--+-----+                                +-----+-----+
+         | tail
+         V
+         +-----+-----+     +-----+-----+
+         |  |  |  ---+---> | val | key |
+         +--+--+-----+     +-----+-----+
+            |
+            V
+            +-----+-----+
+            |  |  | key |
+            +--+--+-----+
+               |
+               V
+               +-----+-----+     +-----+-----+
+               |  |  |  ---+---> | val | key |
+               +--+--+-----+     +-----+-----+
+                  | name
+                  V
+            +-----+-----+
+            | bin |  |  |
+            +-----+--+--+
+                     |
+                     V
+               +-----+-----+
+               | bin |  |  |
+               +-----+--+--+
+                        |
+                        V
+                  +-----+-----+
+                  | bin | num |
+                  +-----+-----+
+
+
+      NIL:  /
+            |
+            V
+      +-----+-----+-----+-----+
+      |'NIL'|  /  |  /  |  /  |
+      +-----+-----+-----+-----+
+
+
+      ASCII-6/7 -> 96 characters:
+          xxxxx0     NUL sp ./<> a-z
+         xxxxxx1     !"#$%&'()*+,- 0-9 :;=?@ A-Z [\]^_`{|}~
+
+
+      Assumptions:
+
+      - 8 bits per byte
+      - word: sizeof(void*) == sizeof(unsigned long)
+      - gcc
+         Functions aligned to 4-byte boundaries
+         Conditionals with Omitted Operands
+         Zero- or variable-length arrays
+         Unused argument attributes
+         Noreturn attributes
